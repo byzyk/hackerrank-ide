@@ -1,11 +1,17 @@
 import assert from 'assert'
-import shell from 'shelljs'
+import { NAME, stdout, index, runCmd } from '../../lib/test-helper'
 
-describe('test', function() {
-  it('should eq test', function() {
-    const res = shell.exec(
-      'cat src/solve-me-first/input | babel-node src/solve-me-first'
-    )
-    assert.equal(15, res)
+describe(`Testing ${NAME}:`, () => {
+  beforeEach(runCmd)
+
+  // Describe tests below.
+  it(`test - ${index}`, function() {
+    const shouldBe = 15
+    assert.equal(shouldBe, stdout)
+  })
+
+  it(`test - ${index}`, function() {
+    const shouldBe = 20
+    assert.equal(shouldBe, stdout)
   })
 })
