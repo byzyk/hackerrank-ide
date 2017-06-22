@@ -7,7 +7,7 @@ function solveMeFirst(a, b) {
   return a + b
 }
 
-export function main() {
+function main() {
   // write your code here.
   // call `readLine()` to read a line.
   // use console.log() to write to stdout
