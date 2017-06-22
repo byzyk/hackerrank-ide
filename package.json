@@ -4,8 +4,16 @@
   "description": "Boilerplate to solve HR tasks using JS.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --watch src/solve-me-first/ --require babel-register src/solve-me-first/test.js",
+    "start": "nodemon src/solve-me-first --exec 'cat src/solve-me-first/input | babel-node'"
   },
   "author": "Bohdan Khodakivskyi",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.5.2",
+    "babel-register": "^6.24.1",
+    "mocha": "^3.4.2",
+    "shelljs": "^0.7.8"
+  }
 }
