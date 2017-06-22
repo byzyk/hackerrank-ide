@@ -1,4 +1,4 @@
-import { readLine } from '../../lib/process.stdin.js'
+import { readLine } from 'lib/process.stdin.js'
 process.stdin.on('end', main)
 /////////////// ignore above this line ////////////////////
 

@@ -4,7 +4,7 @@
   "description": "Boilerplate to solve HR tasks using JS.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --watch src/$NAME/ --require babel-register src/$NAME/test.js"
+    "test": "NODE_PATH=. mocha --watch src/$NAME/ --require babel-register src/$NAME/test.js"
   },
   "author": "Bohdan Khodakivskyi",
   "license": "ISC",
