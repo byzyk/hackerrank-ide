@@ -6,22 +6,14 @@ function main() {
   var n = parseInt(readLine())
   let a = readLine().split(' ')
   a = a.map(Number)
-  let count = []
+  let max = 0
 
-  a.forEach((item, i) => {
-    let countTemp = 0
-    let arrTemp = [...a]
-    arrTemp.splice(i, 1)
-    arrTemp.forEach(item_arr => {
-      if (Math.abs(item_arr - item) <= 1) {
-        countTemp++
-      }
-    })
+  for (let i in a) {
+    let x = [...a].filter(item => item === a[i]).length
+    let y = [...a].filter(item => item === a[i] - 1).length
+    x = x + y
+    if (x > max) max = x
+  }
 
-    count.push(countTemp)
-  })
-
-  console.log(count)
-
-  console.log(Math.max(...count))
+  console.log(max)
 }
