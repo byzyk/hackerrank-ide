@@ -1,4 +1,8 @@
-arr = map(int, raw_input().split())
+import sys
+
+arr = map(int, sys.stdin.readlines())
+N = len(arr)/2
+insertions = 0
 
 def mergeSort(arr):
     n = len(arr)
@@ -6,30 +10,30 @@ def mergeSort(arr):
     if (n == 1):
         return arr
 
-#TODO: try to get insertion value out of this func,
-#      seprate from main mergeSort() stream
-
     left = mergeSort(arr[:n/2])
     right = mergeSort(arr[n/2:])
 
     return merge(left, right)
 
 def merge(left, right):
+    global insertions
     result = []
-    insertions = 0
+    n = len(left)
 
     while len(left) and len(right):
-        if(left[0] > right[0]):
-            result.append(right.pop(0))
-        else:
+        if(left[0] < right[0]):
             result.append(left.pop(0))
-            insertions += 1
+        else:
+            result.append(right.pop(0))
+            insertions += len(left)
+
 
     result.extend(left)
     result.extend(right)
 
-    return result, insertions
+    if (n == N):
+        print insertions
 
-r = mergeSort(arr)
+    return result
 
-print(r)
+res = mergeSort(arr)
