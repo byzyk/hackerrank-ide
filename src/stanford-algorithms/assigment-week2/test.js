@@ -1,7 +1,7 @@
 import test from 'lib/test-helper';
 const output = [];
 
-output[0] = '0\n';
+output[0] = '2407905288\n';
 output[1] = '4\n';
 output[2] = '10\n';
 output[3] = '3\n';
