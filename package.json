@@ -4,8 +4,9 @@
   "description": "Boilerplate to solve HR tasks using JS.",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_PATH=. mocha --watch-extensions txt,py --watch src/$NAME/ --require babel-register src/$NAME/test.js",
-    "parser": "babel-node lib/parser"
+    "test":
+      "NODE_PATH=. mocha --watch-extensions txt,py --watch src/$NAME/ --require babel-register src/$NAME/test.js",
+    "new-project": "babel-node lib/parser"
   },
   "author": "Bohdan Khodakivskyi",
   "license": "ISC",
