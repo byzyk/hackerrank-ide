@@ -1,5 +1,5 @@
 import fs from 'fs';
-import test, { outputPath } from 'lib/test-helper';
+import test from 'lib/test-helper';
 const path = `${__dirname}/output/`;
 const output = [];
 
