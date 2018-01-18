@@ -3,39 +3,90 @@ process.stdin.on('end', main);
 /////////////// ignore above this line ////////////////////
 
 function main() {
-  const contacts = new Contacts();
-  const n = parseInt(readLine());
-  for (let a0 = 0; a0 < n; a0++) {
-    const op_temp = readLine().split(' ');
-    const op = op_temp[0];
-    const value = op_temp[1];
+  const contacts = new Trie();
 
-    switch (op) {
-      case 'add':
-        contacts.add(value);
-        break;
-      case 'find':
-        console.log(contacts.getFoundNum(value));
-        break;
+  let n = parseInt(readLine());
+  while (n--) {
+    const i = readLine().split(' ');
+    const operation = i[0];
+    const value = i[1];
+
+    if (operation === 'add') {
+      contacts.add(value);
+    }
+    if (operation === 'find') {
+      console.log(contacts.getCount(value));
     }
   }
 }
 
-class Contacts {
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.count = 1;
+    this.children = {};
+  }
+}
+
+class Trie {
   constructor() {
-    this.list = [];
+    this.root = new Node('');
+    this.count = 0;
   }
 
   add(name) {
-    this.list = [name, ...this.list];
+    this._add(this.root, name);
   }
 
-  find(term) {
-    return this.list.filter(name => name.indexOf(term) !== -1);
+  _add(node, word) {
+    if (!node || !word) {
+      return null;
+    }
+    const letter = word[0];
+    let child = node.children[letter];
+    if (!child) {
+      child = new Node(letter);
+      node.children[letter] = child;
+    } else {
+      child.count++;
+    }
+    const rest = word.substring(1);
+    this._add(child, rest);
   }
 
-  getFoundNum(term) {
-    const res = this.find(term);
-    return res.length;
+  find(word) {
+    this.count = 0;
+    return this._find(this.root, word);
+  }
+
+  _find(node, word) {
+    if (!node || !word) {
+      return false;
+    }
+    const letter = word[0];
+    const child = node.children[letter];
+    if (child) {
+      if (!this.count || child.count < this.count) {
+        this.count = child.count;
+      }
+      const rest = word.substring(1);
+      if (!rest) {
+        return true;
+      } else {
+        return this._find(child, rest);
+      }
+    } else {
+      return false;
+    }
+  }
+
+  getCount(word) {
+    const isFound = this.find(word);
+
+    if (!isFound) {
+      return 0;
+    } else {
+      return this.count;
+    }
   }
 }
