@@ -29,6 +29,5 @@ function main() {
     speed.push(parseInt(readLine()));
   }
   const pos = parseInt(readLine());
-
   console.log(collision(speed, pos));
 }
